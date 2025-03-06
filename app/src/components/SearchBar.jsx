@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
+import { TextInput as TextInputPaper } from "react-native-paper";
 
 const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
   return (
@@ -18,7 +19,7 @@ const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
       }}
     >
       <View style={styles.searchBarStyle}>
-        <TextInput
+        <TextInputPaper
           placeholder="Search..."
           style={styles.inputContainer}
           onChangeText={(searchText) => {
@@ -32,15 +33,14 @@ const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
                   .toLocaleLowerCase()
                   .includes(searchText.toLocaleLowerCase()) ||
                 blog.tags.reduce((first, second) => {
-                  return (
-                    typeof first === 'boolean'? first :
-                    first
-                      .toLocaleLowerCase()
-                      .includes(searchText.toLocaleLowerCase()) ||
-                    second
-                      .toLocaleLowerCase()
-                      .includes(searchText.toLocaleLowerCase())
-                  );
+                  return typeof first === "boolean"
+                    ? first
+                    : first
+                        .toLocaleLowerCase()
+                        .includes(searchText.toLocaleLowerCase()) ||
+                        second
+                          .toLocaleLowerCase()
+                          .includes(searchText.toLocaleLowerCase());
                 })
             );
             setFilteredData(filteredData);
@@ -66,22 +66,29 @@ const styles = StyleSheet.create({
   searchBarStyle: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#rgb(214, 206, 206)",
+    // backgroundColor: "#rgb(214, 206, 206)",
     borderRadius: 20,
     overflow: "hidden",
-    gap: 20,
+    // gap: 20,
     // paddingHorizontal: 20,
   },
-  inputContainer: { flex: 1, paddingStart: 20 },
+
+  inputContainer: {
+    flex: 1,
+    paddingStart: 20,
+    height: 40,
+    // backgroundColor: "#rgb(214, 206, 206)",
+  },
   filterContainer: {
-    padding: 10,
+    paddingHorizontal: 20,
     backgroundColor: "pink",
+    justifyContent: "center",
   },
   bellContainer: {
     backgroundColor: "pink",
     alignSelf: "stretch",
     padding: 10,
-    borderRadius: 100,
+    borderRadius: 50,
   },
 });
 
