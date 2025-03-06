@@ -5,9 +5,9 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
-const SearchBar = ({ blogData, setFilteredData }) => {
+const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
   return (
     <View
       style={{
@@ -35,7 +35,7 @@ const SearchBar = ({ blogData, setFilteredData }) => {
             setFilteredData(filteredData);
           }}
         />
-        <TouchableOpacity style={styles.filterContainer}>
+        <TouchableOpacity style={styles.filterContainer} onPress={()=>{(onFilterClick())}}>
           <Text>Filter</Text>
         </TouchableOpacity>
       </View>
