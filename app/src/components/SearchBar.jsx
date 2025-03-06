@@ -9,24 +9,25 @@ const SearchBar = ({ blogData, setFilteredData }) => {
       style={styles.searchBarStyle}
       onChangeText={(searchText) => {
         // console.log('searchText ---',blogData)
-        const filteredData = blogData?.filter((blog) =>
-          blog?.title.includes(searchText)
+        const filteredData = blogData?.filter(
+          (blog) =>
+            blog?.title.includes(searchText) || blog.body.includes(searchText)
         );
-
         setFilteredData(filteredData);
       }}
+      
     />
     // </View>
   );
 };
 
 const styles = StyleSheet.create({
-    searchBarStyle: {
-        width: "80%",
-        backgroundColor: "#rgb(214, 206, 206)",
-        borderRadius: 20,
-        padding: 10,
-      },
+  searchBarStyle: {
+    width: "80%",
+    backgroundColor: "#rgb(214, 206, 206)",
+    borderRadius: 20,
+    padding: 10,
+  },
 });
 
 export default SearchBar;
