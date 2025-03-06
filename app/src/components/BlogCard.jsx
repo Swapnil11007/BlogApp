@@ -3,20 +3,29 @@ import React from "react";
 import { useNavigation } from "expo-router";
 
 const BlogCard = ({ blogData }) => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <View>
-      <TouchableOpacity style={styles.mainContainer}
-      onPress={()=>navigation.navigate('BlogDetailScreen', {blogData: blogData})}
+      <TouchableOpacity
+        style={styles.mainContainer}
+        onPress={() =>
+          navigation.navigate("BlogDetailScreen", { blogData: blogData })
+        }
       >
         <View style={styles.dummyImage} />
         <View style={styles.infoContainer}>
           <View style={styles.catAndLikesContainer}>
-            <Text numberOfLines={1} style={{ flex: 1 }}>
-              {blogData?.tags
-                ? blogData?.tags[0].toUpperCase()
-                : "Un-Categarised"}
-            </Text>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              {blogData?.tags ? (
+                blogData?.tags.map((item) => (
+                  <Text style={styles.categoryContainer}>
+                    {item.toUpperCase()}
+                  </Text>
+                ))
+              ) : (
+                <Text style={styles.categoryContainer}>{"UN-CATEGORISED"}</Text>
+              )}
+            </View>
             <Text>{blogData.views}</Text>
           </View>
           <Text numberOfLines={2}>{blogData.title}</Text>
@@ -33,11 +42,18 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "gray",
   },
-  infoContainer:{ flex: 4 },
+  infoContainer: { flex: 4 },
   catAndLikesContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 40,
+  },
+  categoryContainer: {
+    marginRight: 5,
+    paddingHorizontal: 5,
+    backgroundColor: "#rgb(214, 206, 206)",
+    borderRadius: 20,
+    fontSize: 12,
   },
 });
 

@@ -30,12 +30,28 @@ const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
                   .includes(searchText.toLocaleLowerCase()) ||
                 blog.body
                   .toLocaleLowerCase()
-                  .includes(searchText.toLocaleLowerCase())
+                  .includes(searchText.toLocaleLowerCase()) ||
+                blog.tags.reduce((first, second) => {
+                  return (
+                    typeof first === 'boolean'? first :
+                    first
+                      .toLocaleLowerCase()
+                      .includes(searchText.toLocaleLowerCase()) ||
+                    second
+                      .toLocaleLowerCase()
+                      .includes(searchText.toLocaleLowerCase())
+                  );
+                })
             );
             setFilteredData(filteredData);
           }}
         />
-        <TouchableOpacity style={styles.filterContainer} onPress={()=>{(onFilterClick())}}>
+        <TouchableOpacity
+          style={styles.filterContainer}
+          onPress={() => {
+            onFilterClick();
+          }}
+        >
           <Text>Filter</Text>
         </TouchableOpacity>
       </View>
