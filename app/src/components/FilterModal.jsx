@@ -15,7 +15,7 @@ const FilterModal = ({ onFilterClick }) => {
             onFilterClick();
           }}
         >
-          Cancel
+          <Text>Cancel</Text>
         </TouchableOpacity>
       </View>
 
