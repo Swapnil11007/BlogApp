@@ -7,7 +7,7 @@ const BlogCard = ({ blogData }) => {
   return (
     <View>
       <TouchableOpacity style={styles.mainContainer}
-      onPress={(blogData)=>navigation.navigate('BlogDetailScreen', {blogData: blogData})}
+      onPress={()=>navigation.navigate('BlogDetailScreen', {blogData: blogData})}
       >
         <View style={styles.dummyImage} />
         <View style={styles.infoContainer}>

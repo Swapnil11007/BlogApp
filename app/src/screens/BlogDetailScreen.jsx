@@ -2,11 +2,8 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
 
-const BlogDetailScreen = ({route, navigation}) => {
-    const {blogData} = route?.params;
-    console.log("blogData --->",blogData)
-    console.log()
-//   const navigation = useNavigation();
+const BlogDetailScreen = ({ route, navigation }) => {
+  const { blogData } = route?.params;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -15,15 +12,14 @@ const BlogDetailScreen = ({route, navigation}) => {
   }, []);
 
   return (
-    // <View style={styles.mainContainer}>
-
     <ScrollView style={styles.mainContainer}>
       <View style={styles.dummyImage} />
-      <View style={{marginHorizontal:20}}>
-        <Text style={{fontWeight:'600'}}>{blogData.title}</Text>
+      {}
+      <View style={{ marginHorizontal: 20, gap: 20 }}>
+        <Text style={{ fontWeight: "600" }}>{blogData.title}</Text>
+        <Text>{blogData.body}</Text>
       </View>
     </ScrollView>
-    // </View>
   );
 };
 
