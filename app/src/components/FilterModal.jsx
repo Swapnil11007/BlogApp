@@ -2,8 +2,9 @@ import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import CommonButton from "./CommonButton";
 import CommonModal from "./CommonModal";
+import { FILTER_CONSTANT } from "../constants/filterConstant";
 
-const FilterModal = ({ onFilterClick }) => {
+const FilterModal = ({ onCloseFilterClick, blogData, setFilteredData }) => {
   return (
     <CommonModal>
       <View style={styles.headerContainer}>
@@ -12,16 +13,20 @@ const FilterModal = ({ onFilterClick }) => {
         <TouchableOpacity
           style={styles.cancelBtnContainer}
           onPress={() => {
-            onFilterClick();
+            onCloseFilterClick();
           }}
         >
           <Text>Cancel</Text>
         </TouchableOpacity>
       </View>
-
-      <CommonButton name="Author" />
-      <CommonButton name="Title" />
-      <CommonButton name="No. of Likes" />
+      {Object.keys(FILTER_CONSTANT).map((filterType) => (
+        <CommonButton
+          type={filterType}
+          blogData={blogData}
+          setFilteredData={setFilteredData}
+          onCloseFilterClick={onCloseFilterClick}
+        />
+      ))}
     </CommonModal>
   );
 };

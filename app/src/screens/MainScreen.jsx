@@ -21,21 +21,21 @@ const MainScreen = () => {
       console.log(blogData);
       // blogdata contains
       // {posts: Array(30), total: 251, skip: 0, limit: 30}
-      setBlogData(blogData);
+      setBlogData(blogData.posts);
       setFilteredData(blogData.posts);
     });
   }, []);
 
-  const onFilterClick = ()=>{
-    setShowSortingOptions(!showSortingOptions)
-  }
-  
+  const onFilterClick = () => {
+    setShowSortingOptions(!showSortingOptions);
+  };
+
   return (
     <>
       <View style={{ flex: 1, marginTop: 10, marginHorizontal: 10, gap: 10 }}>
         <View>
           <SearchBar
-            blogData={blogData.posts}
+            blogData={blogData}
             setFilteredData={setFilteredData}
             onFilterClick={onFilterClick}
           />
@@ -48,7 +48,9 @@ const MainScreen = () => {
           contentContainerStyle={{ gap: 10 }}
         />
       </View>
-      {showSortingOptions && <FilterModal onFilterClick={onFilterClick}/>}
+      {showSortingOptions && (
+        <FilterModal onCloseFilterClick={onFilterClick} blogData={blogData} setFilteredData={setFilteredData}/>
+      )}
     </>
   );
 };
