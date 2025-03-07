@@ -1,8 +1,7 @@
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import CommonButton from "./CommonButton";
 
-const CommonModal = ({children}) => {
+const CommonModal = ({children}:{children:React.ReactNode}) => {
   return (
     <Modal visible={true} transparent={true} animationType="slide">
       <View style={styles.mainContainer}>

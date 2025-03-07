@@ -7,8 +7,20 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { TextInput as TextInputPaper } from "react-native-paper";
+import { postDataType } from "../constants/dataTypes";
 
-const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
+type searchBarIprop = {
+  blogData: postDataType[];
+  setFilteredData: (postDataType: postDataType[]) => void;
+  onFilterClick: () => void;
+};
+
+const SearchBar = ({
+  blogData,
+  setFilteredData,
+  onFilterClick,
+}: searchBarIprop) => {
+  // console.log("🚀 ~ SearchBar ~ blogData:", blogData);
   return (
     <View
       style={{
@@ -23,8 +35,8 @@ const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
           placeholder="Search..."
           style={styles.inputContainer}
           onChangeText={(searchText) => {
-            // console.log('searchText ---',blogData)
-            const filteredData = blogData?.filter(
+            console.log("searchText ---", blogData);
+            const filteredData: postDataType[] = blogData?.filter(
               (blog) =>
                 blog?.title
                   .toLowerCase()
@@ -32,7 +44,7 @@ const SearchBar = ({ blogData, setFilteredData, onFilterClick }) => {
                 blog.body
                   .toLocaleLowerCase()
                   .includes(searchText.toLocaleLowerCase()) ||
-                blog.tags.reduce((first, second) => {
+                blog.tags.reduce((first, second)=> {
                   return typeof first === "boolean"
                     ? first
                     : first

@@ -3,8 +3,20 @@ import React from "react";
 import CommonButton from "./CommonButton";
 import CommonModal from "./CommonModal";
 import { FILTER_CONSTANT } from "../constants/filterConstant";
+import { blogDataType, postDataType } from "../constants/dataTypes";
 
-const FilterModal = ({ onCloseFilterClick, blogData, setFilteredData }) => {
+type filterModalIprop = {
+  onCloseFilterClick: () => void;
+  blogData: postDataType[];
+  setFilteredData: React.Dispatch<React.SetStateAction<postDataType[]>>;
+};
+
+const FilterModal = ({
+  onCloseFilterClick,
+  blogData,
+  setFilteredData,
+}: filterModalIprop) => {
+  console.log("🚀 ~ FilterModal ~ blogData:", blogData);
   return (
     <CommonModal>
       <View style={styles.headerContainer}>
@@ -21,7 +33,7 @@ const FilterModal = ({ onCloseFilterClick, blogData, setFilteredData }) => {
       </View>
       {Object.keys(FILTER_CONSTANT).map((filterType) => (
         <CommonButton
-          type={filterType}
+          filterType={filterType}
           blogData={blogData}
           setFilteredData={setFilteredData}
           onCloseFilterClick={onCloseFilterClick}

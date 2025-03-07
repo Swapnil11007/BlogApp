@@ -1,8 +1,9 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { useNavigation } from "expo-router";
+import { postDataType } from "../constants/dataTypes";
 
-const BlogCard = ({ blogData }) => {
+const BlogCard = ({ blogData }: { blogData: postDataType }) => {
   const navigation = useNavigation();
   return (
     <View>
@@ -17,8 +18,8 @@ const BlogCard = ({ blogData }) => {
           <View style={styles.catAndLikesContainer}>
             <View style={{ flex: 1, flexDirection: "row" }}>
               {blogData?.tags ? (
-                blogData?.tags.map((item) => (
-                  <Text style={styles.categoryContainer}>
+                blogData?.tags.map((item, index) => (
+                  <Text style={styles.categoryContainer} key={index.toString()}>
                     {item.toUpperCase()}
                   </Text>
                 ))
