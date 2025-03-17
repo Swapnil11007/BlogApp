@@ -20,5 +20,5 @@ export type postDataType = {
 
 export type  initialStoreType = {
     blogData: blogDataType,
-    savedBlogs: postDataType[]
+    savedBlogs: number[]
 }

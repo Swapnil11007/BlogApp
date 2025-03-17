@@ -3,15 +3,29 @@ import React from "react";
 import { useNavigation } from "expo-router";
 import { postDataType } from "../constants/dataTypes";
 
-const BlogCard = ({ blogData }: { blogData: postDataType }) => {
+const BlogCard = ({
+  blogData,
+  fromSavedBlog = false,
+}: {
+  blogData: postDataType;
+  fromSavedBlog?: boolean;
+}) => {
   const navigation = useNavigation();
   return (
     <View>
       <TouchableOpacity
         style={styles.mainContainer}
-        onPress={() =>
-          navigation.navigate("BlogDetailScreen", { blogData: blogData })
-        }
+        onPress={() => {
+          !fromSavedBlog
+            ? navigation.navigate("BlogDetailScreen", { blogData: blogData })
+            : navigation.navigate("Home", {
+                screen: "BlogDetailScreen",
+                params: {
+                  blogData: blogData,
+                  from: "Saved"
+                },
+              });
+        }}
       >
         <View style={styles.dummyImage} />
         <View style={styles.infoContainer}>

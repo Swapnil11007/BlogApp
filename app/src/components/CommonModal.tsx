@@ -1,12 +1,26 @@
-import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
+  Pressable,
+} from "react-native";
 import React from "react";
 
-const CommonModal = ({children}:{children:React.ReactNode}) => {
+const CommonModal = ({
+  children,
+  closeModal = ()=>{},
+}: {
+  children: React.ReactNode;
+  closeModal: () => void;
+}) => {
+  console.log("🚀 ~ closeModal:", closeModal)
+
   return (
     <Modal visible={true} transparent={true} animationType="slide">
-      <View style={styles.mainContainer}>
-        {children}
-      </View>
+      <Pressable style={{ flex: 1 }} onPress={() => closeModal()} />
+      <View style={styles.mainContainer}>{children}</View>
     </Modal>
   );
 };
@@ -24,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CommonModal
+export default CommonModal;

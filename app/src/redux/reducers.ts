@@ -5,7 +5,7 @@ const rootReducer = combineReducers({
     blogDataReducer: blogDataSlice,
 })
 
-export type tooReducerType = ReturnType<typeof rootReducer>;
+export type tooReducer = ReturnType<typeof rootReducer>;
 
 export const createStore = ()=>configureStore({
     reducer: rootReducer

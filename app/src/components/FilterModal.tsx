@@ -18,7 +18,7 @@ const FilterModal = ({
 }: filterModalIprop) => {
   console.log("🚀 ~ FilterModal ~ blogData:", blogData);
   return (
-    <CommonModal>
+    <CommonModal closeModal={onCloseFilterClick}>
       <View style={styles.headerContainer}>
         <Text style={{ fontWeight: "600", fontSize: 20 }}>Sort By</Text>
 
